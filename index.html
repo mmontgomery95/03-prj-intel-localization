@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Intel: Sustainability Through the Ages</title>
+  <!-- Bootstrap (LTR) by default; swap to RTL when page or content language requires it -->
+  <link id="bs-ltr" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <!-- RTL stylesheet kept disabled by default; script below will enable if needed -->
+  <link id="bs-rtl" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" disabled />
+  <!-- Bootstrap Icons (optional, used for column icons) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.4/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -172,5 +178,39 @@
     <h2>Subscribe to our Newsletter</h2>
     <!-- Add form here -->
   </section>
+  <!-- Bootstrap bundle (includes Popper) for interactive components if needed -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- RTL detection: enable RTL stylesheet when appropriate, or set dir="rtl" on RTL-language elements -->
+  <script>
+    (function(){
+      const rtlLangs = ['ar','he','fa','ur','ps','sd','ug','dv'];
+      const docLang = (document.documentElement.lang || '').split('-')[0].toLowerCase();
+      const ltrLink = document.getElementById('bs-ltr');
+      const rtlLink = document.getElementById('bs-rtl');
+
+      function enableRtlStyles() {
+        try {
+          if (ltrLink) ltrLink.disabled = true;
+          if (rtlLink) rtlLink.disabled = false;
+          document.documentElement.dir = 'rtl';
+        } catch (e) {
+          // fallback: set dir on document and rely on simple CSS rules
+          document.documentElement.setAttribute('dir','rtl');
+        }
+      }
+
+      if (rtlLangs.includes(docLang)) {
+        // whole page is an RTL language
+        enableRtlStyles();
+      } else {
+        // Look for any elements marked with an RTL lang and set dir on those elements
+        const rtlEls = Array.from(document.querySelectorAll('[lang]')).filter(el => {
+          const l = (el.lang || '').split('-')[0].toLowerCase();
+          return rtlLangs.includes(l);
+        });
+        rtlEls.forEach(el => el.setAttribute('dir','rtl'));
+      }
+    })();
+  </script>
 </body>
 </html>

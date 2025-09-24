@@ -212,3 +212,31 @@ section {
 .milestone:focus {
 	box-shadow: 0 0 0 3px rgba(12, 96, 255, 0.12), 0 20px 40px rgba(3,19,40,0.12);
 }
+
+/* =====================
+	 RTL SUPPORT HELPERS
+	 =====================
+	 These rules are minimal and scoped: they only apply when an element
+	 or the document has dir="rtl". English (default) remains left-to-right.
+*/
+
+[dir="rtl"] {
+	direction: rtl;
+}
+
+/* Flip text-align utilities in RTL contexts where explicit alignment is used */
+[dir="rtl"] .text-start { text-align: right !important; }
+[dir="rtl"] .text-end { text-align: left !important; }
+
+/* Ensure flex items that rely on start/end map correctly in RTL */
+[dir="rtl"] .justify-content-start { justify-content: flex-end !important; }
+[dir="rtl"] .justify-content-end { justify-content: flex-start !important; }
+
+/* If an icon sits before text in LTR, this keeps spacing consistent in RTL */
+[dir="rtl"] .d-flex .gap-2 { gap: .5rem; }
+
+/* Small tweak for timeline scrolling in RTL: mirror horizontal scrolling direction */
+[dir="rtl"] .timeline { direction: rtl; }
+
+/* Button focus/hover consistency in RTL */
+[dir="rtl"] .btn:focus { box-shadow: 0 0 0 3px rgba(13,110,253,0.15); }
