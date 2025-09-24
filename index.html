@@ -129,54 +129,92 @@
   </section>
 
     <!-- 3-Column Content Section -->
-  <section>
-    <div>
-      
-      <!-- Column 1 -->
-      <div>
-        <h2>RISE Strategy</h2>
-        <p>
-          Under its RISE (Responsible, Inclusive, Sustainable, Enabling) strategy, 
-          Intel sets ambitious 2030 goals, including driving industry-wide 
-          progress on climate action, water stewardship, and waste reduction.
-        </p>
-        <!-- Learn More Button -->
-        <a href="#">Learn More</a>
-      </div>
+  <section class="py-4" aria-label="Highlights">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Column 1 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="p-3 h-100 bg-light rounded-3">
+            <h3 class="h5 d-flex align-items-center gap-2">
+              <i class="bi bi-graph-up-arrow fs-4" aria-hidden="true"></i>
+              <span>RISE Strategy</span>
+            </h3>
+            <p class="mb-3">
+              Under its RISE strategy, Intel sets ambitious 2030 goals to advance climate action and sustainability.
+            </p>
+            <a href="#" class="btn btn-outline-primary">Learn More</a>
+          </div>
+        </div>
 
-      <!-- Column 2 -->
-      <div>
-        <h2>Commitment</h2>
-        <p>
-          In 2022, Intel pledged to achieve net-zero greenhouse gas emissions 
-          (Scope 1 and 2) by 2040. This commitment builds on decades of 
-          environmental initiatives and partnerships across the semiconductor 
-          industry.
-        </p>
-        <!-- Learn More Button -->
-        <a href="#">Learn More</a>
-      </div>
+        <!-- Column 2 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="p-3 h-100 bg-light rounded-3">
+            <h3 class="h5 d-flex align-items-center gap-2">
+              <i class="bi bi-award fs-4" aria-hidden="true"></i>
+              <span>Commitment</span>
+            </h3>
+            <p class="mb-3">
+              Intel's commitments include net-zero goals and investments in clean manufacturing and renewable electricity.
+            </p>
+            <a href="#" class="btn btn-outline-primary">Learn More</a>
+          </div>
+        </div>
 
-      <!-- Column 3 -->
-      <div>
-        <h2>Water &amp; Waste</h2>
-        <p>
-          Intel conserves billions of gallons of water annually and 
-          collaborates with local communities to restore watersheds.
-          Intel also upcycles and recycles materials to reduce waste and 
-          advance a circular economy.
-        </p>
-        <!-- Learn More Button -->
-        <a href="#">Learn More</a>
+        <!-- Column 3 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="p-3 h-100 bg-light rounded-3">
+            <h3 class="h5 d-flex align-items-center gap-2">
+              <i class="bi bi-droplet fs-4" aria-hidden="true"></i>
+              <span>Water &amp; Waste</span>
+            </h3>
+            <p class="mb-3">
+              Intel conserves water at scale and advances recycling/upcycling to reduce waste and support a circular economy.
+            </p>
+            <a href="#" class="btn btn-outline-primary">Learn More</a>
+          </div>
+        </div>
       </div>
-
     </div>
   </section>
 
   <!-- Subscription Form -->
-  <section>
-    <h2>Subscribe to our Newsletter</h2>
-    <!-- Add form here -->
+  <section class="py-4" aria-label="Subscribe">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <h2 class="h4 mb-3">Subscribe to our Newsletter</h2>
+
+          <!-- Alert (hidden until success) -->
+          <div id="sub-success" class="alert alert-success visually-hidden" role="alert">
+            Thanks — you're subscribed! Check your inbox to confirm.
+          </div>
+
+          <form id="subscribe-form" class="needs-validation" novalidate>
+            <div class="mb-3">
+              <label for="sub-name" class="form-label">Full name <span class="text-muted small">(optional)</span></label>
+              <input type="text" class="form-control" id="sub-name" placeholder="Jane Doe" />
+            </div>
+
+            <div class="mb-3">
+              <label for="sub-email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="sub-email" placeholder="you@example.com" required />
+              <div class="invalid-feedback">Please provide a valid email address.</div>
+            </div>
+
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="sub-consent" required />
+              <label class="form-check-label" for="sub-consent">I agree to receive Intel communications about sustainability.</label>
+              <div class="invalid-feedback">Please provide consent to subscribe.</div>
+            </div>
+
+            <div class="d-grid">
+              <button id="sub-submit" class="btn btn-primary" type="submit">Subscribe</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
   </section>
   <!-- Bootstrap bundle (includes Popper) for interactive components if needed -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -212,5 +250,32 @@
       }
     })();
   </script>
+    <script>
+      // Subscription form handling (client-side only)
+      (function(){
+        const form = document.getElementById('subscribe-form');
+        const success = document.getElementById('sub-success');
+
+        if (!form) return;
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (!form.checkValidity()) {
+            form.classList.add('was-validated');
+            return;
+          }
+
+          // Show success message and reset form (simulate subscription)
+          success.classList.remove('visually-hidden');
+          form.classList.remove('was-validated');
+          form.reset();
+
+          // Hide success after a short delay
+          setTimeout(() => success.classList.add('visually-hidden'), 6000);
+        }, false);
+      })();
+    </script>
 </body>
 </html>
