@@ -250,6 +250,32 @@
       }
     })();
   </script>
+  <!-- Site footer -->
+  <footer class="bg-dark text-white pt-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-6 text-center text-md-start mb-2 mb-md-0">
+          <small>&copy; <span id="year"></span> Intel Corporation. All rights reserved.</small>
+        </div>
+        <div class="col-12 col-md-6 text-center text-md-end">
+          <nav aria-label="Footer navigation">
+            <a href="#" class="text-white me-3">Privacy Policy</a>
+            <a href="#" class="text-white me-3">Terms of Use</a>
+            <a href="#" class="text-white">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="bg-dark mt-3" style="border-top: 1px solid rgba(255,255,255,0.06);"></div>
+  </footer>
+  <script>
+    // Fill current year in footer
+    (function(){
+      const y = new Date().getFullYear();
+      const el = document.getElementById('year');
+      if (el) el.textContent = y;
+    })();
+  </script>
     <script>
       // Subscription form handling (client-side only)
       (function(){
